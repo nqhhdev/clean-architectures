@@ -1,0 +1,22 @@
+{
+  "@@locale": "vi",
+  "appTitle": "Hộp thư",
+  "inboxTitle": "Hộp thư",
+  "emptyInbox": "Không có thư",
+  "noSubject": "(không có tiêu đề)",
+  "retry": "Thử lại",
+  "delete": "Xoá",
+  "signIn": "Đăng nhập",
+  "signInTitle": "Đăng nhập",
+  "sessionExpiredMessage": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+  "offlineMessage": "Bạn đang ngoại tuyến.",
+  "errorCommonNetwork": "Không thể kết nối tới máy chủ.",
+  "errorCommonUnauthorized": "Phiên đăng nhập đã hết hạn.",
+  "errorCommonConflict": "Thao tác xung đột với trạng thái hiện tại. Hãy làm mới rồi thử lại.",
+  "errorCommonValidation": "Máy chủ từ chối yêu cầu.",
+  "errorCommonServer": "Máy chủ không xử lý được yêu cầu.",
+  "errorCommonUnknown": "Đã xảy ra lỗi.",
+  "errorEmailsInvalidId": "Thư phải có mã định danh.",
+  "errorEmailsNotFound": "Thư này không còn tồn tại.",
+  "unexpectedError": "Đã xảy ra lỗi. Vui lòng thử lại."
+}

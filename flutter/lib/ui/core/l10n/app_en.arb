@@ -1,0 +1,28 @@
+{
+  "@@locale": "en",
+  "appTitle": "Inbox",
+  "@appTitle": {
+    "description": "Application title shown by the OS task switcher."
+  },
+  "inboxTitle": "Inbox",
+  "emptyInbox": "No emails",
+  "noSubject": "(no subject)",
+  "retry": "Retry",
+  "delete": "Delete",
+  "signIn": "Sign in",
+  "signInTitle": "Sign in",
+  "sessionExpiredMessage": "Your session has expired. Please sign in again.",
+  "offlineMessage": "You are offline.",
+  "errorCommonNetwork": "Could not reach the server.",
+  "@errorCommonNetwork": {
+    "description": "Shown for AppError code Common.Network."
+  },
+  "errorCommonUnauthorized": "Your session has expired.",
+  "errorCommonConflict": "This conflicts with the current state. Refresh and try again.",
+  "errorCommonValidation": "The server rejected the request.",
+  "errorCommonServer": "The server could not process the request.",
+  "errorCommonUnknown": "Something went wrong.",
+  "errorEmailsInvalidId": "An email must have an id.",
+  "errorEmailsNotFound": "That email no longer exists.",
+  "unexpectedError": "Something went wrong. Please try again."
+}
