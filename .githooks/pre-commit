@@ -1,0 +1,27 @@
+#!/bin/sh
+# Pre-commit gates for the Flutter stack. Enable once per clone:
+#   git config core.hooksPath .githooks
+#
+#   1. staged flutter/**/*.dart -> dart format, then re-stage (only files with no unstaged edits)
+#   2. staged flutter/.okf/ files -> python3 .okf/tools/okf.py --check
+set -e
+
+dart_files=$(git diff --cached --name-only --diff-filter=ACMR -- 'flutter/*.dart')
+if [ -n "$dart_files" ]; then
+    # Re-staging after format would also stage unstaged hunks, so refuse partially staged files up front.
+    for f in $dart_files; do
+        if ! git diff --quiet -- "$f"; then
+            echo "pre-commit: $f is partially staged and would be reformatted as a whole - stage all of it or stash the rest" >&2
+            exit 1
+        fi
+    done
+    # dart format runs from the package root, so strip the flutter/ prefix.
+    # shellcheck disable=SC2046  # word-splitting is intended (no spaces in repo paths)
+    (cd flutter && dart format $(echo "$dart_files" | sed 's#^flutter/##') >/dev/null)
+    # shellcheck disable=SC2086
+    git add $dart_files
+fi
+
+if git diff --cached --name-only --diff-filter=ACMRD | grep -q '^flutter/\.okf/'; then
+    (cd flutter && python3 .okf/tools/okf.py --check)
+fi

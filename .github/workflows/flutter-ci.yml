@@ -1,0 +1,59 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ "flutter/**", ".github/workflows/flutter-ci.yml" ]
+  pull_request:
+    branches: [ main ]
+    paths: [ "flutter/**", ".github/workflows/flutter-ci.yml" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: flutter-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  COVERAGE_THRESHOLD: "80"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flutter
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    - name: Check knowledge base (.okf)
+      run: python3 .okf/tools/okf.py --check
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+      with:
+        channel: stable
+        flutter-version: 3.38.9   # keep in step with pubspec.yaml; Dependabot does not bump the SDK
+        cache: true
+
+    - name: Install packages (also generates l10n)
+      run: flutter pub get
+
+    - name: Generate code (freezed, json_serializable)
+      run: dart run build_runner build -d
+
+    - name: Check formatting
+      run: dart format --output=none --set-exit-if-changed lib test tool integration_test
+
+    - name: Analyze
+      run: flutter analyze
+
+    - name: Test (unit, widget, headless integration, architecture, golden)
+      run: flutter test --coverage
+
+    - name: Coverage threshold
+      run: dart run tool/check_coverage.dart "$COVERAGE_THRESHOLD"

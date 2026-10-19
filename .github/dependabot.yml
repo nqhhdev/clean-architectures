@@ -1,0 +1,31 @@
+version: 2
+updates:
+  # Dart/Flutter package updates for the Flutter stack
+  - package-ecosystem: "pub"
+    directory: "/flutter"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "pub"
+    # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      development-dependencies:
+        dependency-type: "development"
+
+  # GitHub Actions updates (the workflow pins actions by commit SHA)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "dependencies"
+      - "github-actions"
