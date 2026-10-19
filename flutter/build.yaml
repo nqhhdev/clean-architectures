@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Wrong-typed JSON throws CheckedFromJsonException (an Exception) instead of a TypeError.
+          checked: true
+          explicit_to_json: true
