@@ -1,0 +1,12 @@
+# Knowledge Base Update Log
+
+## 2026-10-19
+* **Removal**: Deleted ADR 0009 and three process pages that are not part of the stack itself.
+* **Creation**: Security baseline: [ADR 0020](adr/0020-security-baseline.md) (rules S1-S7, enforcement pending), [Security and Authorization](architecture/cross-cutting/security-and-authorization.md) rewritten with Baseline and Project-specific sections, S1-S7 rows in [Constraints](engineering/constraints.md), [Security baseline enforcement](backlog/security-baseline-enforcement.md) task; security sections in `.claude/rules/data.md`, `config.md` and the review, onboard-repo, plan skills.
+* **Update**: Docs-sync with the Flutter refactor: [ADR 0010](adr/0010-use-cases-layer.md) to [0019](adr/0019-urgent-failure-clearing-and-async-rules.md); new pages for [Use Case Layer](architecture/components/use-cases.md), [Navigation](architecture/cross-cutting/navigation.md), [Localization](architecture/cross-cutting/localization.md), [Theming](architecture/cross-cutting/theming.md), [Configuration and Environments](architecture/cross-cutting/configuration.md), five technologies and four glossary terms; components, constraints, patterns, conventions, workflows and Emails pages match the code; broken links fixed; **Removal**: the `logging-package` backlog task (done by ADR 0012).
+* **Update**: [Branching and Pull Requests](workflows/process/branching-and-pr.md) now records the commit rules (one part per commit, short message, no extra author).
+* **Creation**: [CI Pipeline](architecture/delivery/ci-pipeline.md) is real: pull-request workflow, Dependabot for `pub`, and a pre-commit hook. **Removal**: deleted the `ci-pipeline` backlog task (done).
+* **Creation**: Brought the bundle to the template layout and OKF v0.2: frontmatter on every concept, an index in every directory, `log.md`, generated `map.md`, and [`tools/okf.py`](tools/okf.py). The earlier flat draft had no frontmatter and was replaced.
+* **Creation**: The Emails slice documents [domains](domains/emails/emails.md), [architecture](architecture/context.md), [patterns](engineering/patterns/index.md) and [workflows](workflows/index.md).
+* **Creation**: Pages for topics the starter does not implement yet (security, observability, persistence, navigation, CI, infrastructure, branching) exist as `draft` stubs to keep the standard layout.
+* **Creation**: [ADR 0001](adr/0001-flutter-app-architecture-layers.md) to [0008](adr/0008-okf-knowledge-base-per-stack.md).

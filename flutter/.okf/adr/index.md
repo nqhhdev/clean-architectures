@@ -1,0 +1,23 @@
+Why the codebase is the way it is. Supersede an accepted ADR rather than editing it.
+
+# Concepts
+* [ADR 0001: Follow the Flutter app-architecture guide - UI, Data and optional Domain layers](0001-flutter-app-architecture-layers.md) - Organise lib/ by architectural role as the official Flutter guide describes, and enforce the dependency directions with a test.
+* [ADR 0002: Result<T> for expected failures, exceptions for the unexpected](0002-result-over-exceptions.md) - Return business and transport failures as Result values so they are visible in signatures; keep exceptions for bugs and faults.
+* [ADR 0003: Riverpod for dependency injection and ViewModel state](0003-riverpod-for-di-and-state.md) - Use flutter_riverpod for both DI and state: ViewModels are AsyncNotifiers, providers in config/ pick implementations.
+* [ADR 0004: Urgent failures go through one handler](0004-urgent-failures-single-handler.md) - Failures that need app-wide handling (expired session, no network) are routed to one UrgentFailureHandler before any screen shows its own error.
+* [ADR 0005: One owner per piece of shared state](0005-single-source-of-truth-for-state.md) - Each piece of state used by several screens has exactly one Riverpod notifier that owns it; screens read and write through it.
+* [ADR 0006: Remote repositories are cache-first and refresh after writes](0006-ui-reads-from-repository-cache.md) - The UI renders what the repository holds; the repository fills a cache from the service and refetches it after every successful write.
+* [ADR 0007: Four test tiers - unit, widget, headless integration, device e2e](0007-test-pyramid-and-device-e2e.md) - Test the same slice at four depths, with a shared in-memory mock API for integration and a real HTTP mock server for device e2e.
+* [ADR 0008: Each stack keeps its own OKF knowledge bundle in .okf/](0008-okf-knowledge-base-per-stack.md) - Project knowledge lives in a per-stack Open Knowledge Format v0.2 bundle with the template layout, checked by tools/okf.py.
+* [ADR Template](_template-adr.md) - Copy this when recording an architecture decision.
+* [ADR 0010: Optional use-case layer in domain/use_cases](0010-use-cases-layer.md) - Screen logic that sorts, combines or is shared lives in use-case classes between repositories and ViewModels.
+* [ADR 0011: Generate models with freezed and json_serializable, keep output git-ignored](0011-code-generation-freezed-json.md) - Models, state and DTOs use freezed; DTOs parse with checked json_serializable; generated files are rebuilt, never committed.
+* [ADR 0012: Global error hooks behind Logger and CrashReporter ports](0012-global-error-hooks-logger-crash-reporter.md) - Every escaped error reaches one CrashReporter; logging and reporting are utils ports implemented in config.
+* [ADR 0013: Environments as env JSON files plus native flavors](0013-environments-and-flavors.md) - dev, stg and prod each have an env JSON and a native flavor; release builds fail fast on bad config.
+* [ADR 0014: Strict analysis with very_good_analysis, plus architecture-test stand-ins for missing lints](0014-strict-lints-and-architecture-stand-ins.md) - very_good_analysis and strict analyzer modes gate every change; rules no lint covers are checked in layer_rules.dart.
+* [ADR 0015: Localize with gen-l10n; errors carry codes and the UI maps them to text](0015-localization-gen-l10n.md) - All user-facing text comes from ARB files via gen-l10n; AppError codes are localized in one UI extension.
+* [ADR 0016: One app theme with ThemeExtensions; no inline styles](0016-theme.md) - Styles and colors come from AppTheme and its ThemeExtensions; widgets never build a TextStyle or Color inline.
+* [ADR 0017: go_router with a session redirect and a placeholder sign-in](0017-routing-go-router.md) - go_router owns navigation; an expired session redirects to a placeholder sign-in screen until real auth exists.
+* [ADR 0018: One ApiClient, DTO services and mapped errors in the data layer](0018-data-layer-api-client-dtos-errors.md) - ApiClient owns HTTP; services return DTOs; repositories map DTOs and ApiException to domain, skipping invalid items.
+* [ADR 0019: Urgent failures clear per type on real responses; ViewModel actions are guarded](0019-urgent-failure-clearing-and-async-rules.md) - Only a real HTTP response clears offline or session-expired, one type at a time; ViewModel actions never interleave.
+* [ADR 0020: A universal security baseline every project built from this template must meet](0020-security-baseline.md) - Seven security rules apply to every project; project-specific choices stay per project. Enforcement is planned, not built.
