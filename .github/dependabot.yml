@@ -11,6 +11,12 @@ updates:
     labels:
       - "dependencies"
       - "pub"
+    # Majors that need a newer Flutter SDK or lint fixes are taken deliberately, not by Dependabot
+    ignore:
+      - dependency-name: "go_router"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "very_good_analysis"
+        update-types: ["version-update:semver-major"]
     # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
     groups:
       production-dependencies:
@@ -35,6 +41,9 @@ updates:
     # TypeScript is pinned to 6.0.3 until typescript-eslint supports 7 (ADR 0006); 6.x bumps still arrive
     ignore:
       - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # Node types follow the Node runtime major (.nvmrc, Dockerfile); bumped together with it
+      - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
     groups:
@@ -66,3 +75,7 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+    # The Node major moves with .nvmrc and CI in one deliberate change
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
