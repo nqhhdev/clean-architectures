@@ -1,3 +1,7 @@
+// Linux/CI goldens are canonical: skip locally with `--exclude-tags golden`.
+@Tags(['golden'])
+library;
+
 import 'package:clean_architecture/ui/emails/email_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,8 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../support/builders.dart';
 import '../../support/pump_app.dart';
 
-/// Golden example. Regenerate after an intentional visual change:
-///   flutter test --update-goldens test/ui/emails/email_tile_golden_test.dart
+/// Golden example. Images are rendered on Linux (the CI platform); regenerate
+/// after an intentional visual change with `tool/update_goldens.sh`.
 /// Text renders with the test font (Ahem), so the images do not depend on the
 /// platform's fonts.
 void main() {

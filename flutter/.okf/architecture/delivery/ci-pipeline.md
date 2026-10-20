@@ -15,7 +15,7 @@ Three pieces, all at the monorepo root (`.github/`, `.githooks/`), scoped to `fl
 [`flutter-ci.yml`](../../../../.github/workflows/flutter-ci.yml) runs on pushes and pull requests to `main` that touch `flutter/**`:
 `okf.py --check`, `flutter pub get` (also gen-l10n), `dart run build_runner build -d`, `dart format --set-exit-if-changed`,
 `flutter analyze`, `flutter test --coverage`, then `tool/check_coverage.dart` with `COVERAGE_THRESHOLD` 80.
-Both third-party actions are pinned by commit SHA (checkout v7.0.1, flutter-action v2.23.0). Flutter is pinned to 3.38.9.
+Both third-party actions are pinned by commit SHA (checkout v7.0.1, flutter-action v2.23.0). Flutter is pinned to 3.47.7.
 Device e2e is not run in CI; see [Test Architecture](test-architecture.md).
 
 ## Automatic dependency updates

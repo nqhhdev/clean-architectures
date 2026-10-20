@@ -10,3 +10,7 @@
 * **Creation**: The Emails slice documents [domains](domains/emails/emails.md), [architecture](architecture/context.md), [patterns](engineering/patterns/index.md) and [workflows](workflows/index.md).
 * **Creation**: Pages for topics the starter does not implement yet (security, observability, persistence, navigation, CI, infrastructure, branching) exist as `draft` stubs to keep the standard layout.
 * **Creation**: [ADR 0001](adr/0001-flutter-app-architecture-layers.md) to [0008](adr/0008-okf-knowledge-base-per-stack.md).
+
+## 2026-10-20
+* **Update**: Flutter 3.47.7 / Dart 3.13.5 in CI and `environment: sdk: ^3.13.0`; [Flutter](engineering/technologies/flutter.md), [CI pipeline](architecture/delivery/ci-pipeline.md) and [local environment](architecture/delivery/local-development-environment.md) updated. SDK-pinned transitive packages moved with the SDK; new lints fixed (initializing formals in `ApiClient`, an `if` element in a test fake).
+* **Creation**: [Goldens](engineering/conventions/goldens.md) convention: Linux/CI goldens are canonical, golden tests carry the `golden` tag (`dart_test.yaml`), local non-Linux runs use `--exclude-tags golden`, `tool/update_goldens.sh` regenerates in a Linux container. [Build and Test](workflows/engineering/build-and-test.md) and [Test architecture](architecture/delivery/test-architecture.md) updated.
