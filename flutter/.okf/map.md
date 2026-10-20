@@ -79,6 +79,7 @@ status: stable
 | [engineering/conventions/_template-convention.md](engineering/conventions/_template-convention.md) | Template | Copy this when recording a naming, placement or style rule. | [template, convention] |
 | [engineering/conventions/dart-style.md](engineering/conventions/dart-style.md) | Convention | Formatting, lints and language idioms used in the starter. | [convention, dart, style] |
 | [engineering/conventions/error-codes.md](engineering/conventions/error-codes.md) | Convention | AppError codes are Feature.Reason; common ones in utils/common_errors, feature ones in domain/errors, each localized. | [convention, errors] |
+| [engineering/conventions/goldens.md](engineering/conventions/goldens.md) | Convention | Golden images are rendered on Linux, the CI platform; golden tests carry the golden tag so other platforms can skip them. | [convention, testing, golden] |
 | [engineering/conventions/logging.md](engineering/conventions/logging.md) | Convention | Log levels and their use through the Logger port; error is reserved for unrecoverable faults in the data layer. | [convention, logging] |
 | [engineering/conventions/naming.md](engineering/conventions/naming.md) | Convention | Where every kind of file lives and what it is called - one table, one row per kind. | [convention, naming, placement] |
 | [engineering/conventions/route-conventions.md](engineering/conventions/route-conventions.md) | Convention | Paths are constants on AppRoutes, kebab-case; screens navigate with context.go, never a string literal. | [convention, navigation] |

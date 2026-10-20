@@ -13,3 +13,4 @@
 
 ## 2026-10-20
 * **Update**: Flutter 3.47.7 / Dart 3.13.5 in CI and `environment: sdk: ^3.13.0`; [Flutter](engineering/technologies/flutter.md), [CI pipeline](architecture/delivery/ci-pipeline.md) and [local environment](architecture/delivery/local-development-environment.md) updated. SDK-pinned transitive packages moved with the SDK; new lints fixed (initializing formals in `ApiClient`, an `if` element in a test fake).
+* **Creation**: [Goldens](engineering/conventions/goldens.md) convention: Linux/CI goldens are canonical, golden tests carry the `golden` tag (`dart_test.yaml`), local non-Linux runs use `--exclude-tags golden`, `tool/update_goldens.sh` regenerates in a Linux container. [Build and Test](workflows/engineering/build-and-test.md) and [Test architecture](architecture/delivery/test-architecture.md) updated.
