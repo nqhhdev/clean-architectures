@@ -4,10 +4,10 @@ A React 19 + strict TypeScript starter with hexagonal layers enforced by lint, a
 
 ## Quick start
 
-Requires Node 22 (see `.nvmrc`) and pnpm via corepack.
+Requires Node 26 (see `.nvmrc`) and pnpm 12.14.0 (the `packageManager` field; Node 25+ has no corepack).
 
 ```sh
-corepack enable
+npm install -g pnpm@12.14.0   # once; Node 25+ has no corepack
 pnpm install
 pnpm dev:mock      # no backend needed: MSW answers the API, signed in as a demo user
 pnpm check         # the gate CI runs

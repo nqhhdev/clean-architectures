@@ -7,7 +7,7 @@ status: draft
 ---
 # Build and test
 
-Run from `web-react/`. Node 22 (`.nvmrc`); pnpm comes from corepack (`corepack enable`).
+Run from `web-react/`. Node 26 (`.nvmrc`); pnpm is the exact version in `packageManager` (Node 25+ has no corepack: `npm install -g pnpm@12.14.0`).
 
 ```sh
 pnpm install --frozen-lockfile

@@ -21,7 +21,7 @@ public configuration must not be baked in at build time.
   threshold and `okf.py --check`).
 * The workflow starts on every event. A first job detects whether `web-react/**` or the workflow file changed; the
   heavy job is skipped when not. A `gate` job always runs, needs both, and is the only required status check.
-* `actions/setup-node` uses `node-version-file: web-react/.nvmrc`; pnpm comes through corepack.
+* `actions/setup-node` uses `node-version-file: web-react/.nvmrc`; pnpm comes from `pnpm/action-setup`, which reads `packageManager` (Node 25+ ships no corepack).
 * `concurrency` cancels in-progress runs, `permissions` is `contents: read`, actions are pinned by commit SHA with the
   version in a comment, there is no `pull_request_target` and no secrets.
 * The Playwright job is added in step 12 and is required on pull requests to `main` ([ADR 0007](0007-test-tiers-and-coverage.md)). Its command is `pnpm e2e` (step 9), which stays outside `pnpm check`; `pnpm check` also runs the bundle check and the secret scan ([ADR 0019](0019-client-side-security-baseline.md)).
@@ -72,7 +72,7 @@ Decided by builder, awaiting owner review.
 * The only variable is `API_URL`; the entrypoint is the second place that knows its name.
 
 ## Note 2026-10-20: base images pinned by digest
-Approved by the owner. Both base images (`node:22-alpine` build stage, `nginxinc/nginx-unprivileged:1.29-alpine` runtime) are pinned as `tag@sha256:<digest>`: the tag is for readers, the digest is what is pulled. Updates arrive as Dependabot digest bumps (the `docker` entry for `/web-react` in `.github/dependabot.yml`, weekly), reviewed like any other dependency pull request.
+Approved by the owner. Both base images (`node:26-alpine` build stage, `nginxinc/nginx-unprivileged:1.29-alpine` runtime) are pinned as `tag@sha256:<digest>`: the tag is for readers, the digest is what is pulled. Updates arrive as Dependabot digest bumps (the `docker` entry for `/web-react` in `.github/dependabot.yml`, weekly), reviewed like any other dependency pull request.
 
 Verified 2026-10-20 on a local build: the image builds and runs as uid 101; `/healthz` answers 200 and the Docker health check reports healthy; the entrypoint writes `/etc/nginx/conf.d/default.conf`; every response carries the CSP (no `unsafe-inline`, no `unsafe-eval`) and the other security headers; hashed assets are immutable and `index.html` is `no-cache`; Chromium loading the app under the generated CSP reports 0 violations (zod runs jitless, `src/app/zod-config.ts`).
 
