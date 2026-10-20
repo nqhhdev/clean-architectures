@@ -1,0 +1,4 @@
+// path: src/adapters/auth/fixture.ts
+// expect: violation
+import { mountApp } from '@/app/bootstrap';
+export const fixture = mountApp;

@@ -1,0 +1,4 @@
+// path: src/app/fixture.ts
+// expect: violation
+import { createFakeServices } from '@/test/fakes/services';
+export const fixture = createFakeServices;

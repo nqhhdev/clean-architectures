@@ -1,0 +1,4 @@
+// path: src/app/services/fixture.ts
+// expect: violation
+import { createInMemorySession } from '@/adapters/auth/in-memory-session';
+export const fixture = createInMemorySession;

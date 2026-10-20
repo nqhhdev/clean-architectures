@@ -1,0 +1,3 @@
+// path: src/application/fixture.ts
+// expect: violation
+export const load = () => import('@tanstack/react-query');

@@ -1,0 +1,6 @@
+// path: src/app/services/fixture.ts
+// expect: ok
+import type { Services } from '@/application/services';
+import { ServicesContext } from './services-context';
+export const fixture = [ServicesContext];
+export type Fixture = Services;

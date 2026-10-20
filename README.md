@@ -7,7 +7,7 @@ constraints). Stacks do not depend on each other and share no code.
 | Folder | Stack | Status |
 |---|---|---|
 | [`flutter/`](flutter/) | Flutter / Dart (iOS + Android) | v1 - official-guide layers + Riverpod + `Emails` example slice with unit, widget, integration and device e2e tests + OKF bundle |
-| `react-web/` | React + TypeScript | planned |
+| [`web-react/`](web-react/) | React + TypeScript (Vite) | v1 - hexagonal layers enforced by lint, generated API client, `Emails` example slice with unit, component, MSW and Playwright tests + OKF bundle |
 
 Later, on request: iOS SwiftUI, Android Kotlin, React Native, Java backend.
 
@@ -29,6 +29,6 @@ Each stack is a self-contained folder. See its README for commands.
 | Stack | Check command | Details |
 |---|---|---|
 | Flutter | see [`flutter/README.md`](flutter/README.md) (format, analyze, test, `.okf` check) | [`flutter/README.md`](flutter/README.md) |
-| React web | planned | |
+| React web | `pnpm check` in `web-react/` (generate, format, lint, typecheck, coverage, build, bundle and secret scans, `.okf` check); `pnpm e2e` for the browser smoke test | [`web-react/README.md`](web-react/README.md) |
 
 Commits: one logical part per commit, one short Conventional-Commits line.

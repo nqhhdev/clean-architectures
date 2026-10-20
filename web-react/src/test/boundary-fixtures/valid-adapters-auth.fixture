@@ -1,0 +1,4 @@
+// path: src/adapters/auth/fixture.ts
+// expect: ok
+import type { SessionService } from '@/application/session';
+export type Fixture = SessionService;

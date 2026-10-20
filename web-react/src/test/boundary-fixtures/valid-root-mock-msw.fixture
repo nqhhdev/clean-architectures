@@ -1,0 +1,6 @@
+// path: src/main.mock.tsx
+// expect: ok
+import { getListEmailsMockHandler } from '@/adapters/api/generated/emails.msw';
+import { createEmailsApi } from '@/adapters/api/emails-api';
+import { setupWorker } from 'msw/browser';
+export const fixture = [getListEmailsMockHandler, createEmailsApi, setupWorker];

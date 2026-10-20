@@ -1,0 +1,12 @@
+// path: src/features/emails/fixture.ts
+// expect: ok
+import { useTranslation } from 'react-i18next';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { useServices } from '@/app/services/services-context';
+import { errorKey } from '@/application/error-key';
+import type { EmailsPort } from '@/application/emails';
+import { createEmail } from '@/domain/email';
+import { Page, Stack } from '@/ds/layout';
+import { emailsQueryOptions } from './queries';
+export const fixture = [useTranslation, useSuspenseQuery, useServices, errorKey, createEmail, Page, Stack, emailsQueryOptions];
+export type Fixture = EmailsPort;

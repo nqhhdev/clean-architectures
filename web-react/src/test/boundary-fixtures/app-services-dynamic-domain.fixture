@@ -1,0 +1,3 @@
+// path: src/app/services/fixture.ts
+// expect: violation
+export const load = () => import('@/domain/result');

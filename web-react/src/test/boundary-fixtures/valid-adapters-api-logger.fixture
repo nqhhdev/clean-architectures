@@ -1,0 +1,4 @@
+// path: src/adapters/api/fixture.ts
+// expect: ok
+import type { Logger } from '@/application/logger';
+export type Fixture = Logger;

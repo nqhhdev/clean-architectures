@@ -1,0 +1,3 @@
+// path: src/domain/fixture.ts
+// expect: violation
+export const load = () => import('react');

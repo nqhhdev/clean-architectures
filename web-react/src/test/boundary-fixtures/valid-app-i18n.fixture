@@ -1,0 +1,6 @@
+// path: src/app/fixture.ts
+// expect: ok
+import en from '@/locales/en.json';
+import { EmailsScreen } from '@/features/emails/emails-screen';
+import '@/ds/tokens.css';
+export const fixture = [en, EmailsScreen];

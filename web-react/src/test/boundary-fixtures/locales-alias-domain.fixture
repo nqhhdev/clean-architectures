@@ -1,0 +1,4 @@
+// path: src/locales/fixture.ts
+// expect: violation
+import { ok } from '@/domain/result';
+export const fixture = ok;

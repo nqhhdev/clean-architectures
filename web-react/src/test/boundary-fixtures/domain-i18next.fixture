@@ -1,0 +1,4 @@
+// path: src/domain/fixture.ts
+// expect: violation
+import i18next from 'i18next';
+export const fixture = i18next;

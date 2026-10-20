@@ -1,0 +1,10 @@
+dist
+dist-mock
+test-results
+playwright-report
+coverage
+public-mock
+src/adapters/api/generated
+pnpm-lock.yaml
+.okf
+.factory/

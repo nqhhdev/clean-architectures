@@ -1,9 +1,12 @@
 #!/bin/sh
-# Pre-commit gates for the Flutter stack. Enable once per clone:
+# Pre-commit gates for the Flutter and web-react stacks. Enable once per clone:
 #   git config core.hooksPath .githooks
 #
 #   1. staged flutter/**/*.dart -> dart format, then re-stage (only files with no unstaged edits)
 #   2. staged flutter/.okf/ files -> python3 .okf/tools/okf.py --check
+#   3. staged web-react/ files -> prettier --write, then re-stage (only files with no unstaged edits)
+#   4. staged web-react/.okf/ files -> python3 .okf/tools/okf.py --check
+# Each gate runs only when its stack has staged files, so a commit that touches one stack never pays for the other.
 set -e
 
 dart_files=$(git diff --cached --name-only --diff-filter=ACMR -- 'flutter/*.dart')
@@ -24,4 +27,27 @@ fi
 
 if git diff --cached --name-only --diff-filter=ACMRD | grep -q '^flutter/\.okf/'; then
     (cd flutter && python3 .okf/tools/okf.py --check)
+fi
+
+web_files=$(git diff --cached --name-only --diff-filter=ACMR -- 'web-react/*')
+if [ -n "$web_files" ]; then
+    if [ ! -x web-react/node_modules/.bin/prettier ]; then
+        echo "pre-commit: web-react dependencies are missing - run 'pnpm install' in web-react/" >&2
+        exit 1
+    fi
+    for f in $web_files; do
+        if ! git diff --quiet -- "$f"; then
+            echo "pre-commit: $f is partially staged and would be reformatted as a whole - stage all of it or stash the rest" >&2
+            exit 1
+        fi
+    done
+    # Prettier runs from the package root so its config and .prettierignore apply; ignored and unknown files are skipped.
+    # shellcheck disable=SC2046  # word-splitting is intended (no spaces in repo paths)
+    (cd web-react && node_modules/.bin/prettier --write --ignore-unknown --log-level warn $(echo "$web_files" | sed 's#^web-react/##'))
+    # shellcheck disable=SC2086
+    git add $web_files
+fi
+
+if git diff --cached --name-only --diff-filter=ACMRD | grep -q '^web-react/\.okf/'; then
+    (cd web-react && python3 .okf/tools/okf.py --check)
 fi

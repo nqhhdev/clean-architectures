@@ -1,0 +1,4 @@
+// path: src/domain/fixture.ts
+// expect: violation
+import { useState } from 'react';
+export const fixture = useState;

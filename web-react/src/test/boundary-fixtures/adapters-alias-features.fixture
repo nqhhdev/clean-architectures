@@ -1,0 +1,4 @@
+// path: src/adapters/fixture.ts
+// expect: violation
+import { HomeScreen } from '@/features/home/home-screen';
+export const fixture = HomeScreen;

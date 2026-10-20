@@ -21,6 +21,34 @@ updates:
       development-dependencies:
         dependency-type: "development"
 
+  # npm package updates for the web-react stack (pnpm lockfile)
+  - package-ecosystem: "npm"
+    directory: "/web-react"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "npm"
+    # TypeScript is pinned to 6.0.3 until typescript-eslint supports 7 (ADR 0006); 6.x bumps still arrive
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+    # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
   # GitHub Actions updates (the workflow pins actions by commit SHA)
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -29,3 +57,12 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+
+  # Base images of the web-react container (node build stage, nginx-unprivileged runtime)
+  - package-ecosystem: "docker"
+    directory: "/web-react"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "docker"

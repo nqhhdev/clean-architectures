@@ -1,0 +1,4 @@
+// path: src/application/fixture.ts
+// expect: violation
+import type { Heading } from '@/ds/heading';
+export type Fixture = typeof Heading;

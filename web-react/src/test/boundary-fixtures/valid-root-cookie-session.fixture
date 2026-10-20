@@ -1,0 +1,5 @@
+// path: src/main.tsx
+// expect: ok
+import { createCsrfHeaders } from '@/adapters/api/csrf';
+import { createCookieSession } from '@/adapters/auth/cookie-session';
+export const fixture = [createCsrfHeaders, createCookieSession];

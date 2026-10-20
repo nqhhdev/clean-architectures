@@ -1,0 +1,4 @@
+// path: src/ds/fixture.ts
+// expect: violation
+import { useQuery } from '@tanstack/react-query';
+export const fixture = useQuery;

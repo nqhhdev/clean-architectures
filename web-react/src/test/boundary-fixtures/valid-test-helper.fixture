@@ -1,0 +1,5 @@
+// path: src/test/fixture.ts
+// expect: ok
+import { createFakeServices } from '@/test/fakes/services';
+import { createFakeSession } from './fakes/session';
+export const fixture = [createFakeServices, createFakeSession];

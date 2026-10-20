@@ -1,0 +1,4 @@
+// path: src/domain/fixture.test.ts
+// expect: ok
+import { App } from '@/app/App';
+export const fixture = App;

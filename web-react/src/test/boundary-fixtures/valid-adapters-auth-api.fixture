@@ -1,0 +1,6 @@
+// path: src/adapters/auth/fixture.ts
+// expect: ok
+import { GetSessionResponse } from '@/adapters/api/generated/emails.zod';
+import type { HttpClient } from '@/adapters/api/http-client';
+export const fixture = [GetSessionResponse] as const;
+export type Fixture = HttpClient;

@@ -1,0 +1,6 @@
+// path: src/app/fixture.ts
+// expect: ok
+import { createConsoleLogger } from '@/adapters/telemetry/console-logger';
+import { HomeScreen } from '@/features/home/home-screen';
+import en from '@/locales/en.json';
+export const fixture = [createConsoleLogger, HomeScreen, en];

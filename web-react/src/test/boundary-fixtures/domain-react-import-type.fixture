@@ -1,0 +1,4 @@
+// path: src/domain/fixture.ts
+// expect: violation
+import type { ReactNode } from 'react';
+export type Fixture = ReactNode;

@@ -1,0 +1,4 @@
+// path: src/features/home/fixture.ts
+// expect: violation
+import { createQueryClient } from '@/app/query-client';
+export const fixture = createQueryClient;

@@ -1,0 +1,4 @@
+// path: src/features/other/fixture.ts
+// expect: violation
+import type { HomeScreen } from '@/features/home/home-screen';
+export type Fixture = typeof HomeScreen;

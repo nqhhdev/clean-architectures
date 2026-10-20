@@ -1,0 +1,4 @@
+// path: src/features/emails/fixture.ts
+// expect: violation
+import { createEmailsApi } from '@/adapters/api/emails-api';
+export const fixture = createEmailsApi;

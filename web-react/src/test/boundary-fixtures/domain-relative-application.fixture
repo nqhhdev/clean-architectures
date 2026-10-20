@@ -1,0 +1,4 @@
+// path: src/domain/fixture.ts
+// expect: violation
+import { type AppError } from '../application/app-error';
+export type Fixture = AppError;

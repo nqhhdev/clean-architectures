@@ -1,0 +1,4 @@
+// path: src/features/home/fixture.ts
+// expect: violation
+import en from '@/locales/en.json';
+export const fixture = en;

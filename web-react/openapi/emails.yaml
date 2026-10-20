@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Emails API (minimal contract)
+  version: 0.1.0
+  description: Minimal contract for the Emails sample slice; replaced by the real .NET spec (ADR 0008).
+servers:
+  - url: /api
+paths:
+  /emails:
+    get:
+      operationId: listEmails
+      summary: List emails, newest first
+      responses:
+        '200':
+          description: Emails
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email'
+        '4XX':
+          $ref: '#/components/responses/Error'
+  /emails/{id}:
+    get:
+      operationId: getEmail
+      summary: Get one email
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Email'
+        '4XX':
+          $ref: '#/components/responses/Error'
+  # Template placeholder (owner decision D21): /session and the XSRF-TOKEN / X-XSRF-TOKEN names are a stand-in;
+  # a consuming repository replaces them with its backend's spec.
+  /session:
+    get:
+      operationId: getSession
+      summary: The signed-in user; 401 when the session cookie is missing or expired
+      responses:
+        '200':
+          description: The signed-in user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionUser'
+        '4XX':
+          $ref: '#/components/responses/Error'
+    delete:
+      operationId: deleteSession
+      summary: Sign out; the API clears the session cookie
+      responses:
+        '204':
+          description: Signed out
+        '4XX':
+          $ref: '#/components/responses/Error'
+components:
+  responses:
+    Error:
+      description: Failure
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    Email:
+      type: object
+      required: [id, subject, sender, preview, receivedAt, read]
+      properties:
+        id:
+          type: string
+        subject:
+          type: string
+        sender:
+          type: string
+        preview:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        read:
+          type: boolean
+    SessionUser:
+      type: object
+      required: [id, displayName]
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+    ApiError:
+      type: object
+      required: [code]
+      properties:
+        code:
+          type: string
+        message:
+          type: string

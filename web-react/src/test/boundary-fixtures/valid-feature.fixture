@@ -1,0 +1,10 @@
+// path: src/features/home/fixture.ts
+// expect: ok
+import { Heading } from '@/ds/heading';
+import { ok } from '@/domain/result';
+import type { Logger } from '@/application/logger';
+import { useSession } from '@/app/services/use-session';
+import { HomeScreen } from './home-screen';
+export const fixture = [Heading, ok, useSession, HomeScreen];
+export type Fixture = Logger;
+export const load = () => import('@/app/services/services-context');

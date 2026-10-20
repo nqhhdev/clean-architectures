@@ -1,0 +1,4 @@
+// path: src/application/fixture.ts
+// expect: violation
+import { useTranslation } from 'react-i18next';
+export const fixture = useTranslation;

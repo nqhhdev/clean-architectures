@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-mock/
+test-results/
+playwright-report/
+coverage/
+*.local
+.vite/
+src/adapters/api/generated/

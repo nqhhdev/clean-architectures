@@ -1,0 +1,24 @@
+node_modules
+dist
+dist-mock
+coverage
+test-results
+playwright-report
+.vite
+.git
+.okf
+.factory
+src/adapters/api/generated
+*.local
+# Not needed to build dist/ (tightened in r13)
+Dockerfile
+.dockerignore
+README.md
+public-mock
+scripts
+docker/*.test.mjs
+eslint*.config.js
+.prettier*
+.env*
+*.log
+.DS_Store

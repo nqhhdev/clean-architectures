@@ -1,0 +1,4 @@
+// path: src/ds/fixture.tsx
+// expect: violation
+import { ok } from '@/domain/result';
+export const fixture = ok;

@@ -1,0 +1,32 @@
+{
+  "app": {
+    "title": "web-react"
+  },
+  "nav": {
+    "home": "Home",
+    "emails": "Emails",
+    "signOut": "Sign out"
+  },
+  "signIn": {
+    "title": "Sign in",
+    "unavailable": "Sign-in is not available yet."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to start"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "retry": "Try again",
+    "refused": "The request was refused.",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "network": "The service is unreachable. Check your connection and try again.",
+    "invalid": "The service sent an unexpected response.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "emails": {
+    "title": "Emails",
+    "empty": "No emails yet.",
+    "unread": "Unread"
+  }
+}

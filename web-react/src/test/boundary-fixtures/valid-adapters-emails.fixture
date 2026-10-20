@@ -1,0 +1,7 @@
+// path: src/adapters/api/fixture.ts
+// expect: ok
+import { ListEmailsResponse } from './generated/emails.zod';
+import { createEmail } from '@/domain/email';
+import type { EmailsPort } from '@/application/emails';
+export const fixture = [ListEmailsResponse, createEmail];
+export type Fixture = EmailsPort;

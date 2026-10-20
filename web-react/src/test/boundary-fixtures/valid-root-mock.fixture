@@ -1,0 +1,5 @@
+// path: src/main.mock.tsx
+// expect: ok
+import { createInMemorySession } from '@/adapters/auth/in-memory-session';
+import { mountApp } from '@/app/bootstrap';
+export const fixture = [createInMemorySession, mountApp];

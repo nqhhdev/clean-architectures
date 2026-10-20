@@ -1,0 +1,6 @@
+// path: src/ds/fixture.ts
+// expect: ok
+import type { ReactNode } from 'react';
+import styles from './layout.module.css';
+export const fixture = styles;
+export type Fixture = ReactNode;

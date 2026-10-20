@@ -1,0 +1,6 @@
+// path: src/adapters/fixture.ts
+// expect: ok
+import type { Logger } from '@/application/logger';
+import { ok } from '@/domain/result';
+export const fixture = (logger: Logger) => logger.info(String(ok(1)));
+export const load = () => import('@/application/app-error');

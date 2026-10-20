@@ -1,0 +1,4 @@
+// path: src/features/emails/fixture.ts
+// expect: violation
+import { createI18n } from '@/app/i18n';
+export const fixture = createI18n;

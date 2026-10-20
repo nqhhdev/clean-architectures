@@ -1,0 +1,4 @@
+// path: src/ds/fixture.ts
+// expect: violation
+import { useServices } from '@/app/services/services-context';
+export const fixture = useServices;

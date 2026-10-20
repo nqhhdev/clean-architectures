@@ -1,0 +1,4 @@
+// path: src/domain/fixture.ts
+// expect: violation
+import { type Logger } from '@/application/logger';
+export type Fixture = Logger;

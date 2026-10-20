@@ -1,0 +1,4 @@
+// path: src/app/services/fixture.ts
+// expect: violation
+import { createAppRouter } from '../router';
+export const fixture = createAppRouter;

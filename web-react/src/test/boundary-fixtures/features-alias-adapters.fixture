@@ -1,0 +1,4 @@
+// path: src/features/home/fixture.ts
+// expect: violation
+import { createConsoleLogger } from '@/adapters/telemetry/console-logger';
+export const fixture = createConsoleLogger;

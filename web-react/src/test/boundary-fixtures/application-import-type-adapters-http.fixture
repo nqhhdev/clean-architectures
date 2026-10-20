@@ -1,0 +1,4 @@
+// path: src/application/fixture.ts
+// expect: violation
+import type { HttpClient } from '@/adapters/api/http-client';
+export type Fixture = HttpClient;

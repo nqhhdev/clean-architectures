@@ -1,0 +1,6 @@
+// path: src/main.tsx
+// expect: ok
+import { createConsoleLogger } from '@/adapters/telemetry/console-logger';
+import { App } from '@/app/App';
+import { ok } from '@/domain/result';
+export const fixture = [createConsoleLogger, App, ok];

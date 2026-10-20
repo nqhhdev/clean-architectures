@@ -1,0 +1,4 @@
+// path: src/ds/fixture.tsx
+// expect: ok
+import type { ReactNode } from 'react';
+export type Fixture = ReactNode;

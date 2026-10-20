@@ -1,0 +1,8 @@
+# gitleaks config for the CI history scan (ADR 0019). Default rules, plus one allowlisted file: the unit test of
+# scripts/secret-scan.mjs holds fake secrets on purpose.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Fake secrets used as test fixtures"
+paths = ['''(^|/)web-react/scripts/secret-scan\.test\.mjs$''', '''(^|/)scripts/secret-scan\.test\.mjs$''']

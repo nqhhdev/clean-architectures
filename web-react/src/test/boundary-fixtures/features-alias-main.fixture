@@ -1,0 +1,3 @@
+// path: src/features/home/fixture.ts
+// expect: violation
+import '@/main';

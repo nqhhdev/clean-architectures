@@ -1,0 +1,11 @@
+# pnpm 10+ skips dependency build scripts unless listed. unrs-resolver (pulled in by eslint-plugin-boundaries) has a
+# postinstall only to fall back to a WASM build; its native binary arrives as a platform optionalDependency, so the
+# script is denied and lint and the boundary self-test still pass. esbuild (pulled in by orval) is denied for the same
+# reason: its postinstall only validates the binary that its optionalDependency already installed.
+allowBuilds:
+  unrs-resolver: false
+  esbuild: false
+# TODO: remove both entries once @tanstack/*@5.104.5 is older than pnpm's minimumReleaseAge (owner decision D10).
+minimumReleaseAgeExclude:
+  - '@tanstack/query-core@5.104.5'
+  - '@tanstack/react-query@5.104.5'

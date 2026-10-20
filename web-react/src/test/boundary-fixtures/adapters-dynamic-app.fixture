@@ -1,0 +1,3 @@
+// path: src/adapters/fixture.ts
+// expect: violation
+export const load = () => import('@/app/services/services-context');
