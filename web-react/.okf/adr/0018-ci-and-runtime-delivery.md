@@ -51,6 +51,7 @@ When a hosting platform replaces the container, or when the audit gate blocks wo
 Decided by builder, awaiting owner review.
 * The workflow is `.github/workflows/web-react.yml` and has no `workflow_call` (step 2, by choice): it starts on push to `main`, pull requests and `merge_group` itself.
 * Jobs: `changes` -> `check` -> `e2e` -> `gate`. `changes` also outputs `e2e`, true only when `web-react/` or the workflow changed on a pull request whose base is `main`.
+* A `docker` job (added 2026-10-20) builds the image and smoke-tests it (`/healthz`, CSP and HSTS headers, non-root user) when `web-react/Dockerfile`, `.dockerignore`, `docker/`, the lockfile or the workflow change; `gate` requires it to be `success` then, and accepts `skipped` otherwise.
 * `e2e` needs `check` (it runs "after build", and a failing gate does not download a browser), installs dependencies, resolves the `@playwright/test` version, caches `~/.cache/ms-playwright` under `playwright-<os>-<version>`, installs chromium with system dependencies on a miss and only the system dependencies on a hit, then runs `pnpm e2e`. Traces from `test-results/` are uploaded on failure.
 * `gate` needs all three and stays the only required check: when `e2e` is required it must be `success`; otherwise `success` or `skipped`. Pushes to `main` and merge-queue runs skip `e2e`.
 * Dependabot has an `npm` entry for `/web-react` (weekly, grouped minor and patch, major TypeScript ignored while pinned, [ADR 0006](0006-strict-typescript-and-lint.md)).
