@@ -20,7 +20,7 @@ status: stable
 | `ref.read inside build(); use ref.watch` | ViewModel will not reload when a provider changes | [State Management](architecture/cross-cutting/state-management.md) |
 | `ConfigurationError` at startup | Release build without `--dart-define-from-file=env/<env>.json`, or http in prod | [Configuration and Environments](architecture/cross-cutting/configuration.md) |
 | l10n test: a code has no message | New `AppError` code without ARB entry / `errorMessage` arm | [Localization](architecture/cross-cutting/localization.md) |
-| Golden test fails after an intended UI change | Golden is stale | [Build and Test](workflows/engineering/build-and-test.md) |
+| Golden test fails after an intended UI change, or only on macOS | Golden is stale, or rendered on another platform | [Goldens](engineering/conventions/goldens.md) |
 | `line coverage ... threshold` exits 1 | Coverage below 80% | [Generate Coverage](workflows/engineering/generate-coverage.md) |
 | Offline banner stays though the server is up | No HTTP response has arrived since; cache hits do not clear it | [ADR 0019](adr/0019-urgent-failure-clearing-and-async-rules.md) |
 | A second tap does nothing | In-flight guard: an action is still running | [ADR 0019](adr/0019-urgent-failure-clearing-and-async-rules.md) |

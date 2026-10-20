@@ -34,7 +34,7 @@ tool/                          mock API server, coverage check
 flutter pub get && dart run build_runner build -d      # generated code is git-ignored
 dart run tool/mock_server.dart                         # terminal 1: backend on 127.0.0.1:8080
 flutter run --flavor dev --dart-define-from-file=env/dev.json   # terminal 2
-flutter test
+flutter test --exclude-tags golden                     # on macOS; goldens are Linux/CI canonical
 ```
 
 Flavors: `dev`, `stg`, `prod` on Android (`productFlavors`) and iOS (schemes and `Debug-<flavor>` configurations).
