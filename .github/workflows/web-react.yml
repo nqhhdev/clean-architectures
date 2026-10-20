@@ -19,6 +19,7 @@ jobs:
     outputs:
       web_react: ${{ steps.filter.outputs.web_react }}
       e2e: ${{ steps.filter.outputs.e2e }}
+      docker: ${{ steps.filter.outputs.docker }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -45,6 +46,15 @@ jobs:
             changed=false
           fi
           echo "web_react=$changed" >> "$GITHUB_OUTPUT"
+          # The image is built when its inputs change: Dockerfile, docker/, the lockfile or this workflow.
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] \
+            || ! git cat-file -e "$base^{commit}" 2>/dev/null \
+            || git diff --name-only "$base" HEAD \
+              | grep -qE '^(web-react/(Dockerfile|\.dockerignore|docker/|pnpm-lock\.yaml$)|\.github/workflows/web-react\.yml$)'; then
+            echo "docker=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "docker=false" >> "$GITHUB_OUTPUT"
+          fi
           # The browser job is required on pull requests to main only (ADR 0007, 0018).
           if [ "$changed" = "true" ] && [ "$EVENT" = "pull_request" ] && [ "$BASE_REF" = "main" ]; then
             echo "e2e=true" >> "$GITHUB_OUTPUT"
@@ -125,17 +135,42 @@ jobs:
           path: web-react/test-results
           if-no-files-found: ignore
 
+  docker:
+    needs: changes
+    if: needs.changes.outputs.docker == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web-react
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build image
+        run: docker build -t web-react:ci .
+      - name: Smoke test
+        run: |
+          docker run -d --name web -p 8080:8080 -e API_URL=https://api.example.com web-react:ci
+          for i in 1 2 3 4 5 6 7 8 9 10; do curl -fsS http://127.0.0.1:8080/healthz && break; sleep 1; done
+          curl -fsSI http://127.0.0.1:8080/ | tee headers.txt
+          grep -qi '^content-security-policy:' headers.txt
+          grep -qi '^strict-transport-security:' headers.txt
+          [ "$(docker exec web id -u)" != "0" ]
+      - if: always()
+        run: docker rm -f web || true
+
   gate:
     if: always()
-    needs: [changes, check, e2e]
+    needs: [changes, check, e2e, docker]
     runs-on: ubuntu-latest
     steps:
-      - name: Require changes, check and e2e to be green or skipped
+      - name: Require changes, check, e2e and docker to be green or skipped
         env:
           CHANGES: ${{ needs.changes.result }}
           CHECK: ${{ needs.check.result }}
           E2E: ${{ needs.e2e.result }}
           E2E_REQUIRED: ${{ needs.changes.outputs.e2e }}
+          DOCKER: ${{ needs.docker.result }}
+          DOCKER_REQUIRED: ${{ needs.changes.outputs.docker }}
         run: |
           [ "$CHANGES" = "success" ] || { echo "changes: $CHANGES"; exit 1; }
           case "$CHECK" in
@@ -149,5 +184,14 @@ jobs:
             case "$E2E" in
               success | skipped) ;;
               *) echo "e2e: $E2E"; exit 1 ;;
+            esac
+          fi
+          # The image build must pass whenever its inputs changed.
+          if [ "$DOCKER_REQUIRED" = "true" ]; then
+            [ "$DOCKER" = "success" ] || { echo "docker: $DOCKER"; exit 1; }
+          else
+            case "$DOCKER" in
+              success | skipped) ;;
+              *) echo "docker: $DOCKER"; exit 1 ;;
             esac
           fi
