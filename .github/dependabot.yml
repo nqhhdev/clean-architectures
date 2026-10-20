@@ -11,12 +11,6 @@ updates:
     labels:
       - "dependencies"
       - "pub"
-    # Majors that need a newer Flutter SDK or lint fixes are taken deliberately, not by Dependabot
-    ignore:
-      - dependency-name: "go_router"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "very_good_analysis"
-        update-types: ["version-update:semver-major"]
     # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
     groups:
       production-dependencies:
