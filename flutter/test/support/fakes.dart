@@ -74,7 +74,8 @@ class FakeEmailRepository implements EmailRepository {
     await _enter();
     if (failure != null) return Failure(failure!);
     emails = [
-      for (final e in emails) e.id == id ? e.copyWith(isRead: isRead) : e,
+      for (final e in emails)
+        if (e.id == id) e.copyWith(isRead: isRead) else e,
     ];
     return const Success(null);
   }

@@ -21,26 +21,18 @@ typedef RetryDelay = Duration Function(int attempt);
 /// touch `package:http` directly. Holds no state besides its configuration.
 class ApiClient {
   ApiClient({
-    required http.Client client,
-    required Uri baseUrl,
-    AuthTokenProvider? tokenProvider,
-    Logger? logger,
-    ResponseObserver? onResponse,
-    Duration timeout = const Duration(seconds: 10),
-    int maxAttempts = 3,
+    required this._client,
+    required this._baseUrl,
+    this._tokenProvider,
+    this._logger,
+    this._onResponse,
+    this._timeout = const Duration(seconds: 10),
+    this._maxAttempts = 3,
     RetryDelay? retryDelay,
     Future<void> Function(Duration)? sleep,
-    Map<String, String> defaultHeaders = const {},
-  }) : _client = client,
-       _baseUrl = baseUrl,
-       _tokenProvider = tokenProvider,
-       _logger = logger,
-       _onResponse = onResponse,
-       _timeout = timeout,
-       _maxAttempts = maxAttempts,
-       _retryDelay = retryDelay ?? _exponentialBackoff,
-       _sleep = sleep ?? Future<void>.delayed,
-       _defaultHeaders = defaultHeaders;
+    this._defaultHeaders = const {},
+  }) : _retryDelay = retryDelay ?? _exponentialBackoff,
+       _sleep = sleep ?? Future<void>.delayed;
 
   final http.Client _client;
   final Uri _baseUrl;
