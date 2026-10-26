@@ -22,7 +22,7 @@ RUN --mount=type=cache,id=web-react-pnpm,target=/pnpm-store \
     && find dist -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.svg' -o -name '*.json' \) \
        -size +1k -exec gzip -9 -k {} +
 
-FROM nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+FROM nginxinc/nginx-unprivileged:1.31-alpine@sha256:b5047b9b76845eac124358373c6852377c52e4b05834a47647e955dd91cb8f1e
 # The script is committed executable (mode 755), so a plain COPY keeps the bit on BuildKit and the legacy builder alike.
 COPY docker/entrypoint.sh /docker-entrypoint-web.sh
 COPY --from=build /app/dist /usr/share/nginx/html
