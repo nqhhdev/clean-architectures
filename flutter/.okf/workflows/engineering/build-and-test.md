@@ -19,6 +19,6 @@ flutter test test/architecture        # layer rules only
 flutter test --coverage && dart run tool/check_coverage.dart 80
 ```
 Generated files are git-ignored: a fresh clone does not compile until the first two commands ran ([ADR 0011](../../adr/0011-code-generation-freezed-json.md)).
-Goldens: `flutter test --update-goldens <file>` only on purpose.
+Goldens are Linux/CI canonical ([Goldens](../../engineering/conventions/goldens.md)): on macOS run `flutter test --exclude-tags golden`; regenerate only on purpose with `tool/update_goldens.sh <file>`.
 **Verify:** every command exits 0. Device e2e is separate: [Run E2E Tests](run-e2e-tests.md).
 

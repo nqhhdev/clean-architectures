@@ -1,0 +1,4 @@
+# Test tags. `golden`: pixel tests whose images are rendered on Linux (CI is canonical).
+# Local runs on other platforms: flutter test --exclude-tags golden
+tags:
+  golden:

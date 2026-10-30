@@ -23,12 +23,9 @@ void main() {
   });
 
   test('all ARB files have the same keys', () {
-    Set<String> keys(String file) =>
-        (jsonDecode(File('lib/ui/core/l10n/$file').readAsStringSync())
-                as Map<String, dynamic>)
-            .keys
-            .where((k) => !k.startsWith('@'))
-            .toSet();
+    Set<String> keys(String file) => (jsonDecode(
+      File('lib/ui/core/l10n/$file').readAsStringSync(),
+    ) as Map<String, dynamic>).keys.where((k) => !k.startsWith('@')).toSet();
     for (final locale in AppLocalizations.supportedLocales) {
       expect(keys('app_${locale.languageCode}.arb'), keys('app_en.arb'));
     }

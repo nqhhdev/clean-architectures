@@ -79,6 +79,7 @@ status: stable
 | [engineering/conventions/_template-convention.md](engineering/conventions/_template-convention.md) | Template | Copy this when recording a naming, placement or style rule. | [template, convention] |
 | [engineering/conventions/dart-style.md](engineering/conventions/dart-style.md) | Convention | Formatting, lints and language idioms used in the starter. | [convention, dart, style] |
 | [engineering/conventions/error-codes.md](engineering/conventions/error-codes.md) | Convention | AppError codes are Feature.Reason; common ones in utils/common_errors, feature ones in domain/errors, each localized. | [convention, errors] |
+| [engineering/conventions/goldens.md](engineering/conventions/goldens.md) | Convention | Golden images are rendered on Linux, the CI platform; golden tests carry the golden tag so other platforms can skip them. | [convention, testing, golden] |
 | [engineering/conventions/logging.md](engineering/conventions/logging.md) | Convention | Log levels and their use through the Logger port; error is reserved for unrecoverable faults in the data layer. | [convention, logging] |
 | [engineering/conventions/naming.md](engineering/conventions/naming.md) | Convention | Where every kind of file lives and what it is called - one table, one row per kind. | [convention, naming, placement] |
 | [engineering/conventions/route-conventions.md](engineering/conventions/route-conventions.md) | Convention | Paths are constants on AppRoutes, kebab-case; screens navigate with context.go, never a string literal. | [convention, navigation] |
@@ -95,7 +96,7 @@ status: stable
 | [engineering/technologies/_template-technology.md](engineering/technologies/_template-technology.md) | Template | Copy this when adding a dependency or tool. | [template, technology] |
 | [engineering/technologies/build-runner.md](engineering/technologies/build-runner.md) | Technology | Runs the freezed and json_serializable generators; needed after pub get and after model edits. | [technology, codegen, tooling] |
 | [engineering/technologies/flutter-localizations.md](engineering/technologies/flutter-localizations.md) | Technology | SDK localization delegates plus gen-l10n code generation from ARB files. | [technology, l10n] |
-| [engineering/technologies/flutter.md](engineering/technologies/flutter.md) | Technology | UI toolkit for iOS and Android; the stack was built with Flutter 3.38.9. | [technology, flutter] |
+| [engineering/technologies/flutter.md](engineering/technologies/flutter.md) | Technology | UI toolkit for iOS and Android; the stack was built with Flutter 3.47.7. | [technology, flutter] |
 | [engineering/technologies/freezed.md](engineering/technologies/freezed.md) | Technology | Generates value equality, copyWith and toString for models, state and DTOs. | [technology, codegen, freezed] |
 | [engineering/technologies/go-router.md](engineering/technologies/go-router.md) | Technology | Declarative routing with a redirect; used only in ui/core/routing and ui widgets. | [technology, navigation] |
 | [engineering/technologies/http.md](engineering/technologies/http.md) | Technology | package:http is the HTTP client, used only inside ApiClient. | [technology, http] |
