@@ -36,6 +36,9 @@ updates:
     ignore:
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # Node types follow the Node runtime major (.nvmrc, Dockerfile); bumped together with it
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     # Group minor/patch bumps to reduce PR noise; major bumps arrive alone for review
     groups:
       production-dependencies:
@@ -66,3 +69,7 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+    # The Node major moves with .nvmrc and CI in one deliberate change
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
