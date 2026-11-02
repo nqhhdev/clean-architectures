@@ -30,12 +30,12 @@
     "e2e": "pnpm generate && pnpm build:mock && node scripts/check-bundle.mjs --expect-mock dist-mock && playwright test"
   },
   "dependencies": {
-    "@tanstack/react-query": "5.104.5",
-    "@tanstack/react-router": "1.170.45",
-    "i18next": "^26.5.2",
+    "@tanstack/react-query": "5.105.0",
+    "@tanstack/react-router": "1.170.46",
+    "i18next": "^26.5.12",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-i18next": "^17.1.0",
+    "react-i18next": "^17.1.9",
     "zod": "^4.6.7"
   },
   "devDependencies": {
